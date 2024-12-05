@@ -1,0 +1,36 @@
+<main class="main container">
+
+    <div class="categories__phone">
+
+        <button class="categories__phone--button" mat-button [matMenuTriggerFor]="beforeMenu"> <mat-icon
+                class="categories__phone--icon" aria-hidden="false" aria-label="Example home icon"
+                fontIcon="sort"></mat-icon>
+            Categorias</button>
+        <mat-menu #beforeMenu="matMenu" xPosition="before">
+            <button mat-menu-item class="categories__link" *ngFor="let category of (categories$ | async).categories"
+                (click)="setCategory(category.id)">{{category.name}}</button>
+        </mat-menu>
+    </div>
+
+    <h2 class="category">{{(categoryTitle$ | async)}}</h2>
+
+    <div class="info">
+        <p class="info__text info__text--search">{{(searchTitle$ | async) != '' && (searchTitle$ | async) != undefined ?
+            'Buscar: ': ''}} {{(searchTitle$ | async)}}</p>
+        <p class="info__text info__text--length">{{pLength}} resultados</p>
+    </div>
+    <aside class="categories">
+        <h3 class="categories__title">Categorias</h3>
+        <div class="categories__list">
+            <a [ngClass]="[getCurrentCategory(category.id) ? 'categories__link--active' : '']" class="categories__link" *ngFor="let category of (categories$ | async).categories"
+                (click)="setCategory(category.id)">{{category.name}}</a>
+        </div>
+    </aside>
+    <section class="products">
+        <div *ngIf="emptyStatus" class="empty">
+            <h1 class="empty__text">No hay productos</h1>
+        </div>
+        <app-product [product]="product" *ngFor="let product of products"></app-product>
+    </section> 
+    <button class="showMore" *ngIf="showStutus" (click)="showMore()" mat-button>Mostrar Más</button>
+</main>

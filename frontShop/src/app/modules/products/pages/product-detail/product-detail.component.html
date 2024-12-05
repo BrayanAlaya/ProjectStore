@@ -1,0 +1,62 @@
+<div class="main">
+    <div class="header">
+        <p class="breadcrumb">{{(categories$ | async)?.name ?? "" | capitalize}}</p>
+    </div>
+
+    <div class="product">
+        <div class="product__images">
+            <div *ngIf="!loading" class="loading-bar"> </div>
+            <div *ngIf="loading" class="thumbanail">
+                <img *ngFor="let src of srcImage; let i = index" role="listitem" class="thumbanail__image"
+                    [ngClass]="i == srcIndex ? 'thumbanail__image--selected' : ''" (click)="selectImage(i)" [src]="src"
+                    alt="">
+            </div>
+            <div *ngIf="loading" class="carrousel">
+                <mat-icon aria-hidden="false" (click)="onSliderIconBackClick()"
+                    class="carrousel__arrow carrousel__arrow--back" fontIcon="arrow_back"></mat-icon>
+                <img *ngFor="let src of srcImage; let i = index" class="carrousel__image"
+                    [ngClass]="i == srcIndex ? '' : 'carrousel__image--hide'" [src]="src" alt="">
+                <mat-icon aria-hidden="false" (click)="onSliderIconForwardClick()"
+                    class="carrousel__arrow carrousel__arrow--forward" fontIcon="arrow_forward"></mat-icon>
+            </div>
+        </div>
+
+        <div class="product__info">
+            <div *ngIf="!loading" class="loading-bar"> </div>
+            <h1 *ngIf="loading" class="product__title">{{product.name ?? "" | capitalize}}</h1>
+
+            <p *ngIf="loading" class="product__price">S/{{product.price}}</p>
+
+            <div class="star-rating">
+                <ng-container *ngFor="let star of stars; let i = index">
+                    <i (click)="rate(i + 1)" (mouseenter)="hover(i + 1)" (mouseleave)="hover(0)" class="star"
+                        [ngClass]="{'active': i + 1 <= rating || (hovered >= i + 1 && hovered !== 0)}"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="star"></mat-icon>
+                    </i>
+                </ng-container>
+            </div>
+
+            <form *ngIf="loading" [formGroup]="amountForm" class="product__actions">
+                <mat-form-field floatLabel="always">
+                    <mat-label>Cantidad</mat-label>
+                    <input formControlName="amount" class="product__actions--input" matInput type="number">
+                </mat-form-field>
+                <div class="product__actions--row">
+                    <button class="product__actions--button" mat-raised-button color="primary" (click)="addCart()">
+                        <mat-icon aria-hidden="false" aria-label="Example home icon"
+                            fontIcon="shopping_cart"></mat-icon>Añadir
+                        al carrito</button>
+                    <button (click)="addWishList()" class="product__actions--icon"><mat-icon
+                            [ngClass]='[saved ? "product__actions--save" : ""]' aria-hidden="false"
+                            aria-label="Example home icon" fontIcon="star"></mat-icon>{{saved ? 'Guardado' :
+                        'Guardar'}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <h2 class="recomendados">Descripción</h2>
+    <p class="product__description">{{product.description}}</p>
+    <h2 class="recomendados">Recomendados</h2>
+    <div class="recomendados__list">
+        <app-product *ngFor="let productComponent of (productsList$ |async)" [product]="productComponent"></app-product>
+    </div>
+</div>

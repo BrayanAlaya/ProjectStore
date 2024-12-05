@@ -1,0 +1,52 @@
+<main class="ajustes">
+
+    <mat-card class="ajustes__card">
+        <p class="ajustes__breadcrumb"> <mat-icon aria-hidden="false" aria-label="Example home icon"
+                fontIcon="account_circle"></mat-icon>
+            Usuario</p>
+        <div class="ajustes__status"
+            [ngClass]="[status == true ? 'ajustes__status--succes' : '', status == false ? 'ajustes__status--error' : '']">
+            <p *ngIf="status == true">El perfil se ha actualizado correctamente</p>
+            <p *ngIf="status == false">Hubo un erro al intentar aculizar el perfil</p>
+        </div>
+        <form class="ajustes__grid" (ngSubmit)="onSubmit()" [formGroup]="ajustesForm">
+            <div class="ajustes__field">
+                <mat-form-field class="ajustes__input">
+                    <mat-label>Nombres</mat-label>
+                    <input matInput formControlName="name">
+                </mat-form-field>
+                <mat-form-field class="ajustes__input">
+                    <mat-label>Fecha de nacimiento</mat-label>
+                    <input matInput [matDatepicker]="picker" [readonly]="true" formControlName="birthdate">
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field class="ajustes__input">
+                    <mat-label>Correo Electrónico</mat-label>
+                    <input matInput placeholder="example@example.com" [readonly]="true" formControlName="email">
+                </mat-form-field>
+                <mat-form-field class="ajustes__input">
+                    <mat-label>Contraseña</mat-label>
+                    <input matInput [readonly]="true" type="text" value="*************">
+                </mat-form-field>
+                <a mat-raised-button [routerLink]="['/auth/auth_code', 'password']" target="_blank">Cambiar
+                    Contraseña</a>
+            </div>
+
+            <fieldset class="ajustes__field ajustes__field--image">
+
+                <img class="ajustes__image" [src]="srcImage" alt="">
+
+                <input style="display: none;" class="form-control" accept="image/*" #imageUserUploader type="file"
+                    (change)="uploadimage($event)">
+                <div class="ajustes__button--div">
+                    <button class="" mat-raised-button target="_blank" type="button"
+                        (click)="imageUserUploader.click()">Subir Imagen</button>
+                    <button class="" mat-raised-button color="warn" type="button"
+                        (click)="deleteImage()">Eliminar Imagen</button>
+                </div>
+            </fieldset>
+            <button class="ajustes__button ajustes__button--submit" mat-raised-button color="primary">Guardar
+                Cambios</button>
+        </form>
+    </mat-card>
+</main>

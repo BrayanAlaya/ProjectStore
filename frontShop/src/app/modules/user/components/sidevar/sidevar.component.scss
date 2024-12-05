@@ -1,0 +1,61 @@
+.aside {
+    display: flex;
+    height: 100%;
+    color: white;
+    
+    
+
+    &__section {
+        display: none;
+        flex-direction: column;
+        background-color: black;
+        padding-top: 0.2rem;
+        padding-left: 0.7rem;
+        padding-right: 1rem;
+        width: 100%;
+        height: 100%;
+        gap: 2rem;
+        position: relative;
+
+        padding-top: 3rem;
+        @media (min-width: 920px) {
+            padding-top: 6rem;
+        }
+
+        &--slide {
+            display: flex;
+            position: absolute;
+            width: 10rem;
+            left: 3.2rem;
+            z-index: 2;
+            top: 0;
+        }
+
+        &--icons {
+            display: flex;
+            width: 100%;
+        }
+    }
+
+    &__link {
+        font-size: 17px;
+        height: 24px;
+        color: white;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    &__out {
+        display: flex;
+        position: absolute;
+        width: calc(100% - 14.9rem);
+        left: 14.9rem;
+        height: 100%;
+        z-index: 1;
+        background-color: rgba(black, 0.3);
+    }
+    &__in{
+        position: absolute;
+        inset: 0;
+    }
+}

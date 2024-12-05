@@ -1,0 +1,66 @@
+<main class="main container">
+    <form class="vender" [formGroup]="venderForm" (ngSubmit)="onSubmit()">
+        <div class="vender__description--flex">
+            <div class="vender__description">
+                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="edit"></mat-icon>
+                <p class="vender__description--text">{{title}}</p>
+            </div>
+            <p class="vender__status" [ngClass]="[status === true ? 'vender__status--success' : '', status === false ? 'vender__status--error' : '']">{{statusMessage}}</p>
+        </div>
+        <mat-tab-group #tabGroup>
+            <mat-tab label="Información">
+                <div class="vender__info">
+                    <mat-form-field>
+                        <mat-label>Nombre</mat-label>
+                        <input matInput formControlName="name" maxlength="40">
+                    </mat-form-field>
+                    <mat-form-field floatLabel="always">
+                        <mat-label>Precio</mat-label>
+                        <input matInput placeholder="0" formControlName="price">
+                        <span matTextPrefix>S/&nbsp;</span>
+                    </mat-form-field>
+                    <mat-form-field floatLabel="always">
+                        <mat-label>Cantidad</mat-label>
+                        <input matInput placeholder="0" formControlName="amount">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Descripción</mat-label>
+                        <textarea maxlength="500" matInput formControlName="description"></textarea>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Categorias</mat-label>
+                        <mat-select formControlName="category">
+                            <mat-option *ngFor="let category of (categories$ | async).categories" [value]="category.id">{{category.name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </mat-tab>
+            <mat-tab label="Elegir Imagen">
+                <div class="vender__choseImage">
+                    <input style="display: none;" class="form-control" accept="image/*" #imageUserUploader type="file"
+                        multiple (change)="uploadimage($event)">
+                    <div class="vender__button--column">
+                        <p class="slider__info">Sube como minimo una imagen y como maximo 4 imagenes</p>
+                        <button class="" mat-raised-button target="_blank" type="button"
+                            (click)="imageUserUploader.click()">Subir Imagen(s)</button>
+                        <button class="" mat-raised-button color="warn" type="button" (click)="deleteImage()">Eliminar
+                            Imagene(s)</button>
+                    </div>
+                    <div class="slider">
+                        <mat-icon aria-hidden="false" (click)="onSliderIconBackClick()"
+                            class="slider__arrow slider__arrow--back" fontIcon="arrow_back"></mat-icon>
+                        <img *ngFor="let src of srcImage; let i = index" class="slider__image"
+                            [ngClass]="i == srcIndex ? '' : 'slider__image--hide'" [src]="src" alt="">
+                        <mat-icon aria-hidden="false" (click)="onSliderIconForwardClick()"
+                            class="slider__arrow slider__arrow--forward" fontIcon="arrow_forward"></mat-icon>
+                    </div>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+
+        <div class="vender__flex">
+            <button mat-raised-button class="vender__button" [disabled]="!buttonStatus" color="primary">{{buttonText}}</button>
+        </div>
+
+    </form>
+</main>

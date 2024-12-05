@@ -1,0 +1,19 @@
+.header{
+    height: 72px;
+    @media (min-width:920px) {
+        height: 121px;
+    }
+}
+
+.main-container{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.main-heigh{
+    height: 100%;
+}
+.main{
+    flex: 1;
+}
+

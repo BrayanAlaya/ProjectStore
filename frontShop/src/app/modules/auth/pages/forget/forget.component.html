@@ -1,0 +1,36 @@
+<div class="recover">
+    <mat-card class="recover__card">
+        <h2 class="recover__title">Restablecer Contraseña</h2>
+
+        <p class="recover__valid" *ngIf="!validForm">Email y constraseña incorrectos</p>
+
+        <form class="recover__form" (ngSubmit)="onSubmit()" [formGroup]="passwordForm">
+
+            <p *ngIf="passwordChanged == false" class="recover__status recover__status--error">Hubo un error, vuelve a intentarlo</p>
+            <p *ngIf="passwordChanged == true" class="recover__status recover__status--succes">Contraseña cambiada correctamente</p>
+            <p *ngIf="samePassword" class="recover__status recover__status--error">Las contraseñas no coinciden</p>
+            <p *ngIf="passwordValid" class="recover__status recover__status--error">Llenar campos obligatorios</p>
+
+            <mat-form-field>
+                <mat-label>Contraseña</mat-label>
+                <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password">
+                <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword"
+                    [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+                    <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Confirmar Contraseña</mat-label>
+                <input matInput [type]="hidePasswordRepeat ? 'password' : 'text'" formControlName="repeatPassword">
+                <button mat-icon-button matSuffix type="button" (click)="hidePasswordRepeat = !hidePasswordRepeat"
+                    [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePasswordRepeat">
+                    <mat-icon>{{hidePasswordRepeat ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+
+            <button class="recover__button" mat-raised-button color="primary">Confirmar</button>
+
+        </form>     
+    </mat-card>
+</div>

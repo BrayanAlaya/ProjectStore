@@ -1,0 +1,26 @@
+.notification{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.5rem;
+    width: 100%;
+    height: 160px;
+    background-color: white;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .1);
+    padding: 1.5rem;
+    box-sizing: border-box;
+    &__title{
+        margin: 0;
+        font-weight: 500;
+    }
+    &__message{
+        flex: 1;
+        margin: 0;
+        line-height: 1.5;
+    }
+    &__date{
+        margin: 0;
+        font-weight: 700;
+        text-align: right;
+    }
+}

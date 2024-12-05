@@ -1,0 +1,32 @@
+<div class="product">
+    <img routerLink="/product" [queryParams]="{id: product.id}" class="product__image" loading="lazy" src="{{image}}" alt="">
+    <div class="product__info">
+        <div style="padding: 4px;">
+            <h1 routerLink="/product" [queryParams]="{id: product.id}" class="product__info--title">{{product.name ?? ""
+                | capitalize}}</h1>
+            <div class="star-rating">
+                <ng-container *ngFor="let star of stars; let i = index">
+                    <i (click)="rate(i + 1)" (mouseenter)="hover(i + 1)" (mouseleave)="hover(0)" class="star"
+                        [ngClass]="{'active': i + 1 <= rating || (hovered >= i + 1 && hovered !== 0)}"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="star"></mat-icon>
+                    </i>
+                </ng-container>
+            </div>
+            <p class="product__info--price">S/{{product.price}}</p>
+        </div>
+
+    </div>
+    <div class="product__actions">
+
+        <button mat-raised-button color="primary" (click)="addCart()"><mat-icon aria-hidden="false"
+                aria-label="Example home icon" fontIcon="shopping_cart"></mat-icon>
+            Añadir al carrito</button>
+        <div class="product__info--stock--flex product__info--stock--avalible" *ngIf="viewStock(product.stock)">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="check"></mat-icon>
+            <p class="product__info--stock">Disponible</p>
+        </div>
+        <div class="product__info--stock--flex product__info--stock--out" *ngIf="!viewStock(product.stock)">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="close"></mat-icon>
+            <p class="product__info--stock">Agotado</p>
+        </div>
+    </div>
+</div>

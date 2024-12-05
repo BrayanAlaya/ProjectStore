@@ -1,0 +1,50 @@
+<main>
+
+    <section class="front">
+
+        <div class="front__flex container">
+            <div class="front__description">
+                <h1 class="front__title">ProjectStore</h1>
+                <p class="front__slogan">La plataforma donde los negocios fluyen</p>
+            </div>
+
+            <img class="front__image" src="https://projectstore.brayanalaya.dev/assets/bghp.webp" fetchpriority="high" alt="image">
+        </div>
+    </section>
+
+    <section class="categories__title">
+        <div class=" container">
+            <h2 class="categories__title">Categorias</h2>
+            <div class="categories__grid " *ngIf="categories$ | async as categories">
+                <a *ngFor="let category of categories?.categories | slice:0:8"
+                    [ngClass]="[categories.loading ? 'loading-bar' : '']" class="category" routerLink="/products"
+                    [queryParams]="{category: category.id}">{{category.name}}</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="aboutus">
+        <div class="aboutus__title--bg">
+            <div class="container">
+                <h2 class="aboutus__title">Sobre ProjectStore</h2>
+            </div>
+        </div>
+        <div class="container">
+            <p class="aboutus__description">ProjectStore es un marketplace donde
+                los
+                usuarios pueden vender y comprar productos de manera eficiente y segura. La plataforma es
+                fácil
+                y accesible de usar.</p>
+        </div>
+    </section>
+
+    <div class="products--bg">
+        <section class="products">
+
+            <h2 class="products__title">Más recientes</h2>
+
+            <app-product [product]="product" *ngFor="let product of (products$| async)?.products | slice:0:6"></app-product>
+        </section>
+    </div>
+
+</main>

@@ -1,0 +1,34 @@
+<main class="main--bg">
+    <div class="main container">
+        <div class="header">
+    
+            <div class="header__breadcrumb">
+                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="sell"></mat-icon>
+                <p class="header__breadcrumb--text">Publicaciones</p>
+            </div>
+    
+            <div class="header__search">
+                <input (keydown.enter)="onSearchInput(searchInput.value)" #searchInput type="text" class="header__search--input" placeholder="Buscar">
+                <button (click)="onSearchInput(searchInput.value)" class="header__search--button"><mat-icon  aria-hidden="false" aria-label="Example home icon" fontIcon="search"></mat-icon></button>
+            </div>
+            
+            <mat-form-field class="header__category">
+                <mat-label>Category</mat-label>
+                <mat-select (selectionChange)="onSelectionChange($event)">
+                    <mat-option  value="">Ninguno</mat-option>
+                    <mat-option *ngFor="let category of (categories$ | async).categories" value="{{category.id}}">{{category.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    
+        <div [ngClass]="[(loading$ | async).loading ? 'loading-bar' : '']" class="products">
+            <app-user-product *ngFor="let product of (products$| async).products" [product]="product"></app-user-product>
+        </div>
+    
+        <mat-paginator #paginator class="demo-paginator" (page)="handlePageEvent($event)" [length]="(length$ | async).count"
+            [pageSize]="pageSize" [showFirstLastButtons]="true" [hidePageSize]="true" [pageIndex]="pageIndex"
+            aria-label="Select page">
+        </mat-paginator>
+    
+    </div>
+</main>

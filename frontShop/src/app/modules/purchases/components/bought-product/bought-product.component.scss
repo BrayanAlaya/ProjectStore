@@ -1,0 +1,36 @@
+.description {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row  ;
+    width: 100%;
+    gap: 10px;
+
+    box-sizing: border-box;
+
+    &--open {
+        margin: 10px 0;
+    }
+}
+
+
+.date {
+    margin: 0;
+}
+
+.text {
+    margin: 0;
+    max-width: auto;
+    box-sizing: border-box;
+    &--info {
+        max-width: 75px;
+    }
+    &--nowrap{
+        white-space: nowrap;
+        text-overflow: hidden;
+    }
+    &--bold {
+        color: black;
+        margin-bottom: 4px;
+
+    }
+}

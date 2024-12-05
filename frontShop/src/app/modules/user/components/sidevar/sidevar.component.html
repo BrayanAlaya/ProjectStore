@@ -1,0 +1,21 @@
+<aside class="aside">
+    <div class="aside__section aside__section--icons" (mouseenter)="slide = true" (mouseleave)="slide = false">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+        <!-- <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="account_circle"></mat-icon> -->
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="sell"></mat-icon>
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="storefront"></mat-icon>
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="schedule"></mat-icon>
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="notifications"></mat-icon>
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="star"></mat-icon>
+        <div [ngClass]="{'aside__in' : !slide}" (click)="slideAction()"></div>
+        <div class="aside__section" [ngClass]="{'aside__section--slide' : slide }">
+            <a class="aside__link" (click)="slideAction()" routerLink="/user">Mi cuenta</a>
+            <a class="aside__link" (click)="slideAction()" routerLink="/user/products">Publicaciones</a>
+            <a class="aside__link" (click)="slideAction()" routerLink="/user/sales">Mis Ventas</a>
+            <a class="aside__link" (click)="slideAction()" routerLink="/user/bought">Historial</a>
+            <a class="aside__link" (click)="slideAction()" routerLink="/user/notifications">Notificaciones</a>
+            <a class="aside__link" (click)="slideAction()" routerLink="/user/wishlist">Deseados</a>
+        </div>
+    </div>
+    <div class="" [ngClass]="{'aside__out' : slide}" (click)="slideAction()"></div>
+</aside>

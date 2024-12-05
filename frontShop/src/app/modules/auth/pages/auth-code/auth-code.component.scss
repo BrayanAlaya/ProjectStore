@@ -1,0 +1,106 @@
+.authcode {
+
+    width: 100%;
+    max-width: 45rem;
+    margin: 5rem auto 0 auto;
+
+    &__valid {
+        margin-bottom: 1rem;
+        text-align: start;
+        border-left: 10px solid darken(red, 15%);
+        padding: 0.5rem 1rem;
+        background-color: rgba(red, 0.3);
+    }
+
+    &__side {
+        width: 100%;
+        max-width: 25rem;
+        font-size: 1rem;
+    }
+
+    &__description{
+        white-space: wrap; 
+        &--error{
+            margin-top: 25px;
+            padding: 10px 0;
+            padding-left: 10px;
+            border-left: 15px solid rgb(110, 0, 0);            
+            background-color: rgba(red, 15%);
+        }
+    }
+
+    &__form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    &__card {
+        display: flex;
+        align-items: flex-start;
+        gap: 2rem;
+        padding: 3rem 2rem;
+        text-align: center;
+
+        @media (min-width: 1100px) {
+            flex-direction: row;
+            text-align: start;
+        }
+
+    }
+
+    &__title {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 1.5rem;
+        white-space: nowrap; 
+    }
+
+    &__button {
+        margin-top: 0.5rem;
+        height: 2.5rem;
+        color: white;
+        &--send{
+            background-color: transparent;
+            border: none;
+            margin: 0;
+            color: rgb(0, 13, 76);
+            &:hover{
+                cursor: pointer;
+                text-decoration: underline;
+            }
+        }
+    }
+
+    &__enlace {
+        margin-top: 1rem;
+        display: flex;
+        height: 5rem;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}
+
+.code{
+
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0;
+    padding-bottom: 1rem;
+
+    &__field{
+        width: 4rem;
+        border: 2px solid black;
+        padding: 3px;
+        border-radius: 20px;
+        outline: none;
+        text-align: center;
+        font-size: 2rem;
+        padding: 1.5rem 0rem;
+    }
+
+}

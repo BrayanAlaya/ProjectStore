@@ -1,0 +1,45 @@
+<main class="historial--bg">
+  <div class="historial container">
+    <p class="breadcrumb">
+      <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="storefront"></mat-icon>
+      Mis Ventas
+    </p>
+    <section class="purchases">
+
+      <table mat-table [dataSource]="purchases" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Nombre </th>
+          <td mat-cell *matCellDef="let element">
+            <p> {{element.products.name}}</p>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="quantity">
+          <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+          <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef> Precio </th>
+          <td mat-cell *matCellDef="let element">S/{{element.products.price}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef> Monto </th>
+          <td mat-cell *matCellDef="let element">S/{{element.monto}} </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+    </section>
+    <button class="showMore" *ngIf="showStutus" (click)="showMore()" mat-button>Mostrar Más</button>
+  </div>
+  <div *ngIf="emptyCart" class="empty">
+    <mat-icon class="empty__image" aria-hidden="false" aria-label="Example home icon" fontIcon="storefront"></mat-icon>
+    <h1 class="empty__text">No hay productos vendidos aún</h1>
+  </div>
+</main>

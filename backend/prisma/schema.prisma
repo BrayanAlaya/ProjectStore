@@ -1,0 +1,115 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model categories {
+  id       Int        @id @default(autoincrement())
+  name     String     @db.VarChar(45)
+  products products[]
+}
+
+model notifications {
+  id      Int       @id @default(autoincrement())
+  title   String?   @db.VarChar(45)
+  message String?   @db.VarChar(250)
+  date    DateTime? @db.Date
+  read    Int?      @db.TinyInt
+  user_Id Int?
+  users   users?    @relation(fields: [user_Id], references: [id], onUpdate: SetNull, map: "userIdN")
+
+  @@index([user_Id], map: "user_id_idx")
+}
+
+model products {
+  id               Int                @id @default(autoincrement())
+  name             String?            @db.VarChar(200)
+  stock            Int?
+  image            Json?
+  price            Decimal?           @db.Decimal(10, 2)
+  description      String?            @db.VarChar(750)
+  createdDate      DateTime?          @db.Date
+  category_id      Int?
+  user_id          Int?
+  eliminado        Int?               @db.TinyInt
+  cart             cart[]
+  categories       categories?        @relation(fields: [category_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "category")
+  users            users?             @relation(fields: [user_id], references: [id], onUpdate: SetNull, map: "user")
+  purchase_details purchase_details[]
+  wishlist         wishlist[]
+
+  @@index([category_id], map: "category_id_idx")
+  @@index([user_id], map: "user_id_idx")
+}
+
+model purchases {
+  id               Int                @id @default(autoincrement())
+  user_id          Int?
+  date             DateTime?          @db.Date
+  monto            Decimal?           @db.Decimal(14, 2)
+  description      String?            @db.VarChar(500)
+  purchase_details purchase_details[]
+  users            users?             @relation(fields: [user_id], references: [id], onUpdate: SetNull, map: "userIdP")
+
+  @@index([user_id], map: "user_id_idx")
+}
+
+model users {
+  id            Int             @id @default(autoincrement())
+  name          String          @db.VarChar(45)
+  birthdate     DateTime        @db.Date
+  email         String          @unique(map: "email_UNIQUE") @db.VarChar(45)
+  password      String          @db.VarChar(70)
+  rol           Int?
+  createdDate   DateTime        @db.Date
+  image         String?         @db.VarChar(90)
+  eliminado     Int?            @db.TinyInt
+  auth          Int?            @db.TinyInt
+  auth_code     Int?
+  code_try      Int?
+  cart          cart[]
+  notifications notifications[]
+  products      products[]
+  purchases     purchases[]
+  wishlist      wishlist[]
+}
+
+model wishlist {
+  id         Int       @id @default(autoincrement())
+  user_id    Int?
+  product_id Int?
+  products   products? @relation(fields: [product_id], references: [id], onUpdate: SetNull, map: "productIdWl")
+  users      users?    @relation(fields: [user_id], references: [id], onUpdate: SetNull, map: "userIdWl")
+
+  @@index([product_id], map: "product_Id_idx")
+  @@index([user_id], map: "user_id_idx")
+}
+
+model cart {
+  id         Int       @id @default(autoincrement())
+  user_id    Int?
+  product_id Int?
+  amount     Int?
+  users      users?    @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "cart_ibfk_1")
+  products   products? @relation(fields: [product_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "cart_ibfk_2")
+
+  @@index([product_id], map: "product_id")
+  @@index([user_id], map: "user_id")
+}
+
+model purchase_details {
+  id          Int        @id @default(autoincrement())
+  purchase_id Int?
+  product_id  Int?
+  monto       Decimal?   @db.Decimal(10, 2)
+  amount      Int?
+  purchases   purchases? @relation(fields: [purchase_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "purchase_details_ibfk_1")
+  products    products?  @relation(fields: [product_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "purchase_details_ibfk_2")
+
+  @@index([product_id], map: "product_id")
+  @@index([purchase_id], map: "purchase_id")
+}

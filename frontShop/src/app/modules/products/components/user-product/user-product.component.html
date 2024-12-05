@@ -1,0 +1,15 @@
+
+<div class="product">
+    <div class="product__image">
+        <img class="product__image--image" src="{{image}}" alt="">
+    </div>
+    <div class="product__info">
+        <h4 class="product__info--title">{{product.name?.charAt(0)?.toUpperCase() + (product.name == undefined ? "": product.name.slice(1).toLowerCase())}}</h4>
+        <p class="product__info--text">S/{{product.price}}</p>
+        <p class="product__info--text">Cantidad: {{product.stock}}</p>
+    </div>
+    <div class="product__actions">
+        <a class="product__actions--edit" [routerLink]="['/user/sell']" [queryParams]="{id: product.id}"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="edit"></mat-icon></a>
+        <a class="product__actions--delete" (click)="openDialog()"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="delete"></mat-icon></a>
+    </div>
+</div>

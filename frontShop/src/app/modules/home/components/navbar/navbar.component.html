@@ -1,0 +1,116 @@
+<header class="navbar">
+    <div class="navbar--pc">
+        <div class="navbar__upper--bg">
+            <div class="navbar__upper container">
+
+                <h2 routerLink="/" class="navbar__title">ProjectStore</h2>
+
+                <div class="navbar__search">
+                    <input class="navbar__search__input" [(ngModel)]="searchInputValue" #searchInput
+                        (keydown.enter)="search()" placeholder="Buscar" type="text">
+                    <a class="navbar__search__button" aria-label="buscar" href="/search"
+                        (click)="searchInputValue != '' ? search(): searchInput.focus()"><mat-icon aria-hidden="false"
+                            aria-label="Example home icon" fontIcon="search"></mat-icon>
+                    </a>
+                </div>
+
+                <div class="navbar__user">
+                    <a *ngIf="user == null" class="navbar__user__optionsName navbar__user__optionsName--user"
+                        routerLink="/auth/register">Registrarse</a>
+                    <a *ngIf="user == null" class="navbar__user__optionsName navbar__user__optionsName--user"
+                        routerLink="/auth">Ingresar</a>
+
+                    <img [matMenuTriggerFor]="menuUser" *ngIf="user != null" class="navbar__user__image" [src]="srcImage" alt="">
+                    <!-- <button *ngIf="user != null" class="navbar__user__optionsName navbar__user__optionsName--user"
+                        >{{user!.name}}</button> -->
+                    <mat-menu #menuUser="matMenu">
+                        <a class="navbar__user__optionsName navbar__user__optionsName--categorias" aria-label="cuenta" routerLink="/user">Mi
+                            cuenta</a>
+                        <a class="navbar__user__optionsName navbar__user__optionsName--categorias"
+                            routerLink="/user/ajustes" aria-label="ajustes">Ajustes</a>
+                        <a class="navbar__user__optionsName navbar__user__optionsName--categorias"
+                            routerLink="/user/notifications" aria-label="notificaciones">Notificaciones</a>
+                        <a class="navbar__user__optionsName navbar__user__optionsName--categorias"
+                            routerLink="/user/wishlist">Favoritos</a>
+                        <button *ngIf="user != null" aria-label="salir"
+                            class="navbar__user__optionsName navbar__user__optionsName--categorias"
+                            (click)="logOut()">Log out</button>
+                    </mat-menu>
+
+
+                </div>
+
+                <a class="navbar__cart" routerLink="/cart"><mat-icon class="navbar__cart--icon" aria-hidden="false"
+                        aria-label="Example home icon" fontIcon="shopping_cart"></mat-icon>Carrito</a>
+
+            </div>
+        </div>
+
+        <div class="navbar__lower--bg">
+
+            <div class="navbar__lower container">
+                <button class="navbar__user__optionsName" aria-label="categorias" [matMenuTriggerFor]="menu">Categorias</button>
+                <mat-menu #menu="matMenu">
+                    <a *ngFor="let category of (categories$ | async).categories" aria-label="category" href="/products" 
+                        class="navbar__user__optionsName navbar__user__optionsName--categorias" routerLink="/products"
+                        [queryParams]="{category: category.id}">{{category.name}}</a>
+                </mat-menu>
+
+                <a class="navbar__user__optionsName" routerLink="/user/sell">Vender</a>
+                <a class="navbar__user__optionsName" routerLink="/user/notifications">Notificaciones</a>
+                <a class="navbar__user__optionsName" routerLink="/user/wishlist">Favoritos</a>
+                <a class="navbar__user__optionsName" routerLink="/help">Ayuda</a>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="sidenav navbar__upper--bg">
+
+        <div class="sidenav__buttonTitle">
+            <button class="sidenav__button" (click)="slide = true"><mat-icon class="sidenav__icon" aria-hidden="false"
+                    aria-label="Example home icon" fontIcon="menu"></mat-icon></button>
+            <h1 routerLink="/" class="sidenav__title">ProyectStore</h1>
+        </div>
+
+    </div>
+</header>
+
+<div class="slide" [ngClass]="{ 'slide--action': slide }">
+
+    <div class="slide--in">
+
+        <div class="navbar__search">
+            <input class="navbar__search__input" [(ngModel)]="searchInputValue" #searchInput (keydown.enter)="search()"
+                placeholder="Buscar" type="text">
+            <a class="navbar__search__button" (click)="searchInputValue != '' ? search(): searchInput.focus()"><mat-icon
+                    aria-hidden="false" aria-label="Example home icon" fontIcon="search"></mat-icon></a>
+        </div>
+
+        <div class="navbar__user">
+
+            <a *ngIf="user == null" class="navbar__user__optionsName" routerLink="/auth/register">Registrar</a>
+            <a *ngIf="user == null" class="navbar__user__optionsName" routerLink="/auth">Ingresar</a>
+
+            <a *ngIf="user != null" class="navbar__user__optionsName" routerLink="/user"
+                (click)="slide = false">{{user!.name}}</a>
+            <img *ngIf="user != null" class="navbar__user__image" [src]="srcImage" alt="">
+        </div>
+
+        <div class="slide__menu">
+
+            <a class="navbar__user__optionsName" [matMenuTriggerFor]="menu">Categorias</a>
+            <mat-menu #menu="matMenu">
+                <a *ngFor="let category of (categories$ | async).categories"
+                    class="navbar__user__optionsName navbar__user__optionsName--categorias" routerLink="/products"
+                    [queryParams]="{category: category.id}">{{category.name}}</a>
+            </mat-menu>
+
+            <a class="navbar__user__optionsName" routerLink="/user/sell">Vender</a>
+            <a class="navbar__user__optionsName" routerLink="/help">Ayuda</a>
+            <button *ngIf="user != null" class="navbar__user__optionsName" (click)="logOut()">Log out</button>
+
+        </div>
+    </div>
+    <div class="slide--out" (click)="slide = false"></div>
+</div>

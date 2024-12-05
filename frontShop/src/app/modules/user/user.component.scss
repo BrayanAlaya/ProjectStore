@@ -1,0 +1,26 @@
+.sidevar {
+    display: flex;
+    box-sizing: border-box;
+    height: calc(100vh - 72px);
+    @media (min-width: 920px) {
+        height: calc(100vh - 121px);
+    }
+
+    overflow: hidden;
+
+    &__side {
+        width: 52px;
+    }
+
+    &__content {
+        width: 100%;
+        z-index: 0;
+        overflow: scroll;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+
+        &-webkit-scrollbar {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,11 @@
+<main class="historial--bg">
+    <div class="historial container" >
+        <p class="breadcrumb">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="notifications"></mat-icon>
+            Notificaciones</p>
+        <section class="notifications">
+            <app-user-notification *ngFor="let notification of notifications" [notification]="notification"></app-user-notification>
+        </section>
+        <button class="showMore" *ngIf="showStutus" (click)="showMore()" mat-button>Mostrar Más</button>
+    </div>
+</main>

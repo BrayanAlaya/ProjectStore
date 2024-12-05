@@ -1,0 +1,16 @@
+<main class="main container">
+    <div *ngIf="tokenValid == undefined" class="message">
+        <h1 class="message__title">Espera un momento ....</h1>
+        <p class="message__description">Estamos auntenticando tu cuenta</p>
+    </div>
+
+    <div *ngIf="tokenValid == true" class="message message--succes">
+        <h1 class="message__title">Autenticacion exitosa!!!</h1>
+        <p class="message__description">Cuenta autenticada correctamente, ya puedes hacer uso de nustros servicios.</p>
+    </div>
+
+    <div *ngIf="tokenValid == false" class="message message--error">
+        <h1 class="message__title">Hubo un error!!!</h1>
+        <p class="message__description">Hubo un error en la autenticacion de tu cuenta, vuelve a intentarlo mas tarde.</p>
+    </div>
+</main>

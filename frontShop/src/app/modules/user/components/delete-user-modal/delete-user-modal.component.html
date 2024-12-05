@@ -1,0 +1,11 @@
+<h1 class="title">Cancelar Cuenta</h1>
+<div mat-dialog-content>
+    <form class="form" [formGroup]="userForm">
+
+        <p class="form__text">A continuacion, ingresa el siguiente el siguiente texto y confirma para cancelar tu cuenta recuerda que nunca mas volveras a tener acceso al email registrado:</p>
+        <p class="form__text form__text--red">Cancelar cuenta</p>
+        <input type="text" class="form__input" placeholder="Ingresa aqui la frase en rojo" formControlName="input">
+
+        <button mat-raised-button color="warn" (click)="deleteUser()">Confirmar</button>
+    </form>
+</div>

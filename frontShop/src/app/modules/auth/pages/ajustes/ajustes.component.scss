@@ -1,0 +1,120 @@
+.ajustes {
+    padding: 1.5rem;
+    height: 100%;
+    box-sizing: border-box;
+
+    &__card {
+        padding: 2rem;
+        border-radius: 7px;
+        height: 100%;
+        box-sizing: border-box;
+    }
+
+    &__breadcrumb {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 0.5rem;
+        color: rgb(162, 162, 162);
+        font-size: 1rem;
+    }
+
+    &__grid {
+        display: grid;
+        box-sizing: border-box;
+        @media (min-width: 920px) {
+            grid-template-columns: 0.8fr 1.2fr;
+        }
+    }
+
+    &__status {
+        height: 1.5rem;
+        padding: 0.5rem;
+        padding-left: 1rem;
+        display: flex;
+        margin-bottom: 1rem;
+        flex-direction: column;
+        justify-content: center;
+
+        &--succes {
+            border-left: 10px solid rgb(61, 152, 61);
+            background-color: rgba(green, 15%);
+        }
+
+        &--error {
+            border-left: 10px solid rgb(158, 0, 0);
+            background-color: rgba(rgb(128, 0, 0), 15%);
+        }
+
+        p {
+            margin: 0;
+        }
+    }
+
+    &__field {
+        width: 100%;
+        border: none;
+        display: flex;
+        flex-direction: column;
+
+        &--image {
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+
+            @media (max-width: 920px) {
+                grid-row-start: 1;
+                grid-row-end: 2;
+            }
+        }
+    }
+
+    // &__input {
+    //     width: 100%;
+    // }
+
+    &__image {
+        border-radius: 100%;
+        border: 5px solid rgb(210, 210, 210);
+        width: 240px;
+        height: 240px;
+        object-fit: cover;
+        border-radius: 50%;
+
+        @media (min-width: 920px) {
+            width: 270px;
+            height: 270px;
+        }
+    }
+
+    &__button {
+        margin: 2rem 0;
+        cursor: pointer;
+        width: 100%;
+
+        &--div{
+            display: flex;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-direction: column;
+            @media (min-width: 920px) {
+                flex-direction: row;
+                gap: 2rem;
+            }
+        }
+
+        &--submit {
+
+            @media (min-width: 920px) {
+                width: 20rem;
+                margin: 0 auto;
+                margin-top: 1rem;
+                grid-column-start: 1;
+                grid-column-end: 3;
+            }
+        }
+    }
+}

@@ -1,0 +1,47 @@
+.historial{
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 2rem;
+}
+.breadcrumb{
+    display: flex;
+    align-items: center;
+    font-size: 1.3rem;
+    opacity: 40%;
+    gap: 10px;
+}
+.products{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.showMore{
+    width: 8rem;
+    margin: 0 auto;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .1);
+}
+.empty{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    
+    opacity: 35%;
+
+    margin-top: 2rem;
+
+    &__image{
+        width: 100px;
+        height: 100px;
+        font-size: 100px;
+        margin: 0 auto;
+    }
+    &__text{
+        font-size: 2rem;
+        text-align: center;
+    }
+}

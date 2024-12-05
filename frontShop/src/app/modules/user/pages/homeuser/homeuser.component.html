@@ -1,0 +1,45 @@
+<main class="main--bg">
+    <div class="main container">
+        <section class="perfil">
+            <img class="perfil__image" [src]="srcImage" alt="">
+            <div class="perfil__info">
+                <p class="perfil__nombres">{{user?.name}}</p>
+                <p class="perfil__email">{{user?.email}}</p>
+            </div>
+        </section>
+        <section class="options">
+            <a class="options--container" routerLink="/user/ajustes">
+                <mat-icon aria-hidden="false" class="options__icon options__icon--blue" aria-label="Example home icon" fontIcon="account_circle"></mat-icon>
+                <div class="options__info">
+                    <p class="options__title">Datos De Cuenta</p>
+                    <p class="options__description">Información del perfil.</p>
+                </div>                
+                <mat-icon aria-hidden="false" class="options__icon" aria-label="Example home icon" fontIcon="chevron_right"></mat-icon>
+            </a>
+            <a class="options--container" [routerLink]="['/auth/auth_code', 'password']">
+                <mat-icon aria-hidden="false" class="options__icon options__icon--blue" aria-label="Example home icon" fontIcon="key"></mat-icon>
+                <div class="options__info">
+                    <p class="options__title">Cambiar Contraseña</p>
+                    <p class="options__description">Cambia tu la contraseña de tu cuenta.</p>
+                </div>                
+                <mat-icon aria-hidden="false" class="options__icon" aria-label="Example home icon" fontIcon="chevron_right"></mat-icon>
+            </a>
+            <a class="options--container" routerLink="/user/cards">
+                <mat-icon aria-hidden="false" class="options__icon options__icon--blue" aria-label="Example home icon" fontIcon="credit_card"></mat-icon>
+                <div class="options__info">
+                    <p class="options__title">Targetas</p>
+                    <p class="options__description">Targetas guardadas en tu cuenta.</p>
+                </div>                
+                <mat-icon aria-hidden="false" class="options__icon" aria-label="Example home icon" fontIcon="chevron_right"></mat-icon>
+            </a>
+            <button class="options--container" (click)="openDialog()">
+                <mat-icon aria-hidden="false" class="options__icon options__icon--blue" aria-label="Example home icon" fontIcon="delete"></mat-icon>
+                <div class="options__info">
+                    <p class="options__title">Cancelar cuenta</p>
+                    <p class="options__description">Cancela tu cuenta y ya no tendras acceso.</p>
+                </div>                
+                <mat-icon aria-hidden="false" class="options__icon" aria-label="Example home icon" fontIcon="chevron_right"></mat-icon>
+            </button>
+        </section>
+    </div>
+</main>

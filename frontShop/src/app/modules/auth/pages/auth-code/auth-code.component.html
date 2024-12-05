@@ -1,0 +1,34 @@
+<div class="authcode">
+    <mat-card class="authcode__card">
+
+        <div class="authcode__side">
+
+            <h2 class="authcode__title">Verificar Identidad</h2>
+            <p class="authcode__description" *ngIf="!codeSent">Ingresa tu email para recibir el código de identificación en tu correo
+                electrónico</p>
+            <p class="authcode__description" *ngIf="codeSent">Envia el codigo a tu email si este existe</p>
+            <p *ngIf="!codeValid" class="authcode__description authcode__description--error">Has excedido la cantidad de intentos, vuelve a enviar un nuevo código</p>
+
+        </div>
+        <form class="authcode__form" (ngSubmit)="onSubmit()" [formGroup]="authCodeForm">
+
+            <mat-form-field *ngIf="!codeSent">
+                <mat-label>Correo</mat-label>
+                <input matInput placeholder="example@example.com" formControlName="email" required>
+                <mat-error *ngIf="!emailValid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+
+            <fieldset *ngIf="codeSent" class="code">
+                <input class="code__field" maxlength="1" matInput (input)="code2.focus()" formControlName="code1" required>
+
+                <input class="code__field" maxlength="1" matInput #code2 (input)="code3.focus()" formControlName="code2" required>
+
+                <input class="code__field" maxlength="1" matInput #code3 (input)="code4.focus()" formControlName="code3" required>
+
+                <input class="code__field" maxlength="1" matInput #code4 formControlName="code4" required>
+            </fieldset>
+            <button mat-button color="primary" [disabled]="coseSentButton" (click)="sendCode()" type="button">{{coseSentText}}</button>
+            <button class="authcode__button" *ngIf="codeSent" mat-raised-button color="primary">Validar Codigo</button>
+        </form>
+    </mat-card>
+</div>

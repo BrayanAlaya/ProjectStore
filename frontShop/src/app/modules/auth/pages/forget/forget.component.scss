@@ -1,0 +1,58 @@
+.recover {
+
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    min-width: 20rem;
+    max-width: 30rem;
+    margin: 5rem auto 0 auto;
+
+    &__valid {
+        margin-bottom: 1rem;
+        text-align: start;
+        border-left: 10px solid darken(red, 15%);
+        padding: 0.5rem 1rem;
+        background-color: rgba(red, 0.3);
+    }
+
+    &__form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    &__card {
+        padding: 3rem 2rem;
+    }
+
+    &__title {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 1.5rem;
+    }
+
+    &__button {
+        margin-top: 0.5rem;
+        height: 2.5rem;
+    }
+}
+
+.recover__status{
+
+    text-align: start;
+    padding: 10px 0;
+    padding-left: 15px;
+    font-size: 1rem;
+
+    &--error{
+
+        background-color: rgba(red, 15%);
+        border-left: 10px solid red;
+    }
+    &--succes{
+        background-color: rgba(green, 15%);
+        border-left: 10px solid green;
+    }
+}

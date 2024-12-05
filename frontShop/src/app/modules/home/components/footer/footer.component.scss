@@ -1,0 +1,29 @@
+
+.footer{
+    color: white;
+    background-color: #0046be;
+    padding: 2rem 1rem;
+    &__seccion{
+        
+        display: flex;
+        justify-content: space-between;
+        gap: 2rem;
+        margin-bottom: 2rem;
+    }
+    &__title{
+        margin: 0;
+        font-size: 1rem;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+    &__parrafo{
+        margin: 0;
+    }
+    &__enlace{
+        color: white;
+    }
+    &__bottom{
+        text-align: center;
+    }
+    
+}

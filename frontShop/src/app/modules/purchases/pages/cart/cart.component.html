@@ -1,0 +1,22 @@
+<main class="cart--bg">
+    <div class="cart container">
+        <section class="products">
+            <div *ngIf="emptyCart" class="empty">
+                <mat-icon class="empty__image" aria-hidden="false" aria-label="Example home icon" fontIcon="shopping_cart"></mat-icon>
+                <h1 class="empty__text">No hay productos en el carrito</h1>
+            </div>
+            <app-cart-product *ngFor="let cart of products" [cart]="cart" ></app-cart-product>
+        </section>
+        <aside class="detalles">
+            <div class="detalles__section detalles__section--column">
+                <p class="detalles__title">Resumen de compra</p>
+                <p class="detalles__text">Productos({{quantity}})</p>
+            </div>
+            <div class="detalles__section detalles__section--row">
+                <p class="detalles__title">Total</p>
+                <p class="detalles__text">S/{{total}}</p>
+            </div>
+            <button mat-raised-button color="primary" (click)="buy()">Comprar</button>
+        </aside>
+    </div>
+</main>

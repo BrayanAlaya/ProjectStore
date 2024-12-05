@@ -1,0 +1,43 @@
+<mat-accordion>
+    <mat-expansion-panel [expanded]="false" (opened)="opened()" hideToggle>
+        <mat-expansion-panel-header>
+
+            <mat-panel-title>
+                <h4 class="date">{{purchase.date?.replace("Z",'') | date:'dd/MM/yyyy' }}</h4>
+            </mat-panel-title>
+            <mat-panel-description>
+                <div class="description">
+                    <p class="text text--nowrap">{{purchase.description ?? "" | capitalize}}</p>
+                    <p class="text text--info">S/{{purchase.monto}}</p>
+                </div>
+            </mat-panel-description>
+
+        </mat-expansion-panel-header>
+        <span *ngFor="let detail of purchaseDetail">
+            <mat-panel-description>
+                <div class="description description--open">
+                    <p class="text text--bold">{{detail.products?.name ?? "" | capitalize}}</p>
+                    <p class="text text--info">S/{{detail.monto ?? ""}}</p>
+                </div>
+            </mat-panel-description>
+            <mat-panel-description>
+                <div class="description description--in">
+                    <p class="text text--bold">Precio: </p>
+                    <p class="text text--info">S/{{detail.products?.price}}</p>
+                </div>
+            </mat-panel-description>
+            <mat-panel-description>
+                <div class="description description--in">
+                    <p class="text text--bold">Cantidad: </p>
+                    <p class="text text--info">{{detail.amount ?? ""}}</p>
+                </div>
+            </mat-panel-description>
+        </span>
+        <mat-panel-description>
+            <div class="description description--open">
+                <p class="text text--bold">Total: </p>
+                <p class="text text--info">S/{{purchase.monto}}</p>
+            </div>
+        </mat-panel-description>
+    </mat-expansion-panel>
+</mat-accordion>

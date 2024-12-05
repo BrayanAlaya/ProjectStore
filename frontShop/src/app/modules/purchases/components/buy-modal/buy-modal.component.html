@@ -1,0 +1,35 @@
+<h1 class="title">Pagar</h1>
+<div mat-dialog-content>
+  <form class="form" >
+
+    <p class="form__status" [ngClass]="[status == undefined ? '': '',status == true ? 'form__status--success': '',status == false ? 'form__status--error': '']">{{statusMessage}}</p>
+
+    <mat-form-field>
+      <mat-label>Nombre de propietario</mat-label>
+      <input class="form__input" [value]="nameCard" [disabled]="disable" matInput
+      placeholder="" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Numero de targeta</mat-label>
+      <input class="form__input" type="text" [value]="creditCart" [disabled]="disable" maxlength="19" matInput placeholder="xxxx xxxx xxxx xxxx" required>
+    </mat-form-field>
+
+    <div class="form__date">
+      <mat-form-field>
+        <mat-label>MM</mat-label>
+        <input type="text" [value]="mm" [disabled]="disable" maxlength="2" matInput required>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>YY</mat-label>
+        <input type="text" [value]="yy" [disabled]="disable" maxlength="2" matInput required>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field>
+      <mat-label>CVV</mat-label>
+      <input type="text" [value]="cvc" [disabled]="disable" maxlength="3" class="form__input" matInput required>
+    </mat-form-field>
+    <button class="form__button" (click)="buy()">Confirmar</button>
+  </form>
+</div>
